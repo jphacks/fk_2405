@@ -18,4 +18,12 @@ public class RequestController {
         CreateRequestResponse response = new CreateRequestResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("complete_request")
+    public ResponseEntity<CompleteRequestResponse> signup(@RequestBody CompleteRequestRequest entity) {
+        //TODO: process POST request
+
+        CompleteRequestResponse response = new CompleteRequestResponse();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

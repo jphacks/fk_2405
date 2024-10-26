@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/jphacks/fk_2405/backend/be_grpc/config"
-	"github.com/jphacks/fk_2405/backend/be_grpc/database/model"
+	"github.com/jphacks/fk_2405/backend/be_grpc/infrastructure/database/model"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

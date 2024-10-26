@@ -1,11 +1,11 @@
 syntax = "proto3";
 package jphacks.fk_2405.backend.be_grpc;
 
-option go_package="github.com/jphacks/fk_2405/backend/be_grpc/protos/gen";
+option go_package="github.com/jphacks/fk_2405/backend/be_grpc/protos/gen/go/v1";
 
 import "google/protobuf/timestamp.proto";
 
-// protoc --go_out=./proto/gen --go_opt=paths=source_relative --go-grpc_out=./proto/gen --go-grpc_opt=paths=source_relative -I=./proto proto/*.proto
+// protoc --go_out=./proto/gen/go/v1 --go_opt=paths=source_relative --go-grpc_out=./proto/gen/go/v1 --go-grpc_opt=paths=source_relative -I=./proto proto/*.proto
 service MissionService {
   rpc CreateMission(CreateMissionRequest) returns (CreateMissionResponse) {}
   rpc GetMissions(GetMissionsRequest) returns (GetMissionsResponse) {}
@@ -21,9 +21,13 @@ message CreateMissionRequest {
 
 message CreateMissionResponse {
   int64 mission_id = 1;
-  int32 capacity = 2;
-  string title = 3;
-  int64 venue_id = 4;
+  repeated int64 item_ids = 2;
+  int64 venue_id = 3;
+  int32 capacity = 4;
+  int32 count = 5;
+  string title = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
 }
 
 message GetMissionsRequest {

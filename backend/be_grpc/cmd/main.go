@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jphacks/fk_2405/backend/be_grpc/config"
-	"github.com/jphacks/fk_2405/backend/be_grpc/database"
+	"github.com/jphacks/fk_2405/backend/be_grpc/infrastructure/database"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"google.golang.org/grpc"

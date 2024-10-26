@@ -27,4 +27,13 @@ public class AuthController {
         LoginResponse response = new LoginResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("logout")
+    public ResponseEntity<LogoutResponse> logout(String entity) {
+        // ログアウト処理の実行
+
+        LogoutResponse response = new LogoutResponse();
+        //response.setSuccess(true);
+        return new ResponseEntity<>(response, HttpStatus.OK); // レスポンスオブジェクトとHTTPステータスを返す
+    }
 }

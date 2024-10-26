@@ -1,7 +1,7 @@
 package com.github.jphacks.fk_2405.be_rest.api.v1.auth;
 
 public class SignupResponse {
-    private String user_id;
+    //private String user_id;
     private String username;
     private String full_name;
     private String email;

@@ -19,4 +19,12 @@ public class AuthController {
         SignupResponse response = new SignupResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("login")
+    public ResponseEntity<LoginResponse> login(@RequestBody SignupRequest entity) {
+        //TODO: process POST request
+
+        LoginResponse response = new LoginResponse();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

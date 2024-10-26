@@ -9,6 +9,7 @@ export const Room = ({ userName, userId }: Props) => {
       <div>
         <p>No.{userId}</p>
         <h1>{userName}</h1>
+        <h1>helloo!</h1>
       </div>
     </div>
   );

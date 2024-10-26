@@ -26,4 +26,12 @@ public class MissionController {
         SelectMissionResponse response = new SelectMissionResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("complete_mission")
+    public ResponseEntity<CompleteMissionResponse> signup(@RequestBody CompleteMissionRequest entity) {
+        //TODO: process POST request
+
+        CompleteMissionResponse response = new CompleteMissionResponse();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

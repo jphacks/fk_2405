@@ -65,7 +65,7 @@ export default function Home() {
           key={index}
           className="w-[90vw] mx-[5vw] py-10 bg-custom_yellow px-2 mb-5 rounded-md shadow-lg text-center justify-center items-center flex flex-col"
         >
-          <Link href={"/user-search"} className="w-[90vw] mx-[5vw]">
+          <Link href={"/user-search/1"} className="w-[90vw] mx-[5vw]">
             <h1 className="font-bold text-2xl">JPHACK in FUKUOKA</h1>
             <p className="font-bold text-sm">{event.place}</p>
             <p className="font-bold text-sm">

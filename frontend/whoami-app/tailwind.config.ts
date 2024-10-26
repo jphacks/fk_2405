@@ -16,6 +16,9 @@ const config: Config = {
         custom_pink: "#F99D90",
         custom_red: "#F05353",
       },
+      boxShadow: {
+        up: "0px -4px 4px 4px rgba(0, 0, 0, 0.2)",
+      },
     },
   },
   plugins: [],

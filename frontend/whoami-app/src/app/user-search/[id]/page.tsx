@@ -1,6 +1,6 @@
 import { Title } from "@/components/ui/title";
-import { UserCard } from "@/components/ui/userCard";
-import { ScanNfc } from "@/components/ui/scanNfc";
+import { UserCard } from "@/app/user-search/[id]/components/userCard";
+import { ScanNfc } from "@/app/user-search/[id]/components/scanNfc";
 
 export default function Home() {
   return (

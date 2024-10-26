@@ -14,6 +14,7 @@ import (
 
 type MissionUseCase struct {
 	createMission missionUsecase.CreateMissionUseCase
+	getMissions   missionUsecase.GetMissionsUseCase
 }
 
 type MissionService struct {
@@ -25,7 +26,7 @@ func NewMissionService() *MissionService {
 	return &MissionService{}
 }
 
-func (ms *MissionService) CreateMission(ctx context.Context, req *v1.CreateMissionRequest) (*v1.CreateMissionResponse, error) {
+func (ms *MissionService) CreateMission(ctx context.Context, req *v1.CreateMissionRequest) (*v1.Mission, error) {
 	userId, err := helper.GetUserIdFromMetadata(ctx)
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
@@ -40,7 +41,7 @@ func (ms *MissionService) CreateMission(ctx context.Context, req *v1.CreateMissi
 		return nil, err
 	}
 
-	return &v1.CreateMissionResponse{
+	return &v1.Mission{
 		MissionId: oDto.MissionID,
 		ItemIds:   oDto.ItemIDs,
 		VenueId:   oDto.VenueID,
@@ -50,4 +51,30 @@ func (ms *MissionService) CreateMission(ctx context.Context, req *v1.CreateMissi
 		CreatedAt: timestamppb.New(oDto.CreatedAt),
 		UpdatedAt: timestamppb.New(oDto.UpdatedAt),
 	}, nil
+}
+
+func (ms *MissionService) GetMissions(ctx context.Context, req *v1.GetMissionsRequest) (*v1.MissionsList, error) {
+	iDto := &missionUsecase.GetMissionsInputDto{
+		VenueID:   req.GetVenueId(),
+		Available: req.Available,
+	}
+	oDto, err := ms.uc.getMissions.Run(iDto)
+	if err != nil {
+		return nil, err
+	}
+
+	var res *v1.MissionsList
+	for _, v := range oDto.Missions {
+		res.Missions = append(res.Missions, &v1.Mission{
+			MissionId: v.MissionID,
+			ItemIds:   v.ItemIDs,
+			VenueId:   v.VenueID,
+			Capacity:  v.Capacity,
+			Count:     v.Count,
+			Title:     v.Title,
+			CreatedAt: timestamppb.New(v.CreatedAt),
+			UpdatedAt: timestamppb.New(v.UpdatedAt),
+		})
+	}
+	return res, nil
 }

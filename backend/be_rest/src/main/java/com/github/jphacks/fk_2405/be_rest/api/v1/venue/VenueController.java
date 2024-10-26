@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1/venues")
 public class VenueController {
     @PostMapping("create_venue")
-    public ResponseEntity<CreateVenueResponse> signup(@RequestBody CreateVenueRequest entity) {
+    public ResponseEntity<CreateVenueResponse> createVenue(@RequestBody CreateVenueRequest entity) {
         //TODO: process POST request
 
         CreateVenueResponse response = new CreateVenueResponse();

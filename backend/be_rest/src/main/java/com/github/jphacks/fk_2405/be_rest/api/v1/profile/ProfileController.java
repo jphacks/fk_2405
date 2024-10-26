@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {
     @PostMapping("create_profile")
-    public ResponseEntity<CreateProfileResponse> signup(@RequestBody CreateProfileRequest entity) {
+    public ResponseEntity<CreateProfileResponse> createProfile(@RequestBody CreateProfileRequest entity) {
         //TODO: process POST request
 
         CreateProfileResponse response = new CreateProfileResponse();

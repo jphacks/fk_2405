@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1/requests")
 public class RequestController {
     @PostMapping("create_request")
-    public ResponseEntity<CreateRequestResponse> signup(@RequestBody CreateRequestRequest entity) {
+    public ResponseEntity<CreateRequestResponse> createRequest(@RequestBody CreateRequestRequest entity) {
         //TODO: process POST request
 
         CreateRequestResponse response = new CreateRequestResponse();
@@ -20,7 +20,7 @@ public class RequestController {
     }
 
     @PostMapping("complete_request")
-    public ResponseEntity<CompleteRequestResponse> signup(@RequestBody CompleteRequestRequest entity) {
+    public ResponseEntity<CompleteRequestResponse> completeRequest(@RequestBody CompleteRequestRequest entity) {
         //TODO: process POST request
 
         CompleteRequestResponse response = new CompleteRequestResponse();

@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<LoginResponse> login(@RequestBody SignupRequest entity) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest entity) {
         //TODO: process POST request
 
         LoginResponse response = new LoginResponse();

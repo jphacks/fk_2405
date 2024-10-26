@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1/missions")
 public class MissionController {
     @PostMapping("create_mission")
-    public ResponseEntity<CreateMissionResponse> signup(@RequestBody CreateMissionRequest entity) {
+    public ResponseEntity<CreateMissionResponse> createMission(@RequestBody CreateMissionRequest entity) {
         //TODO: process POST request
 
         CreateMissionResponse response = new CreateMissionResponse();
@@ -20,7 +20,7 @@ public class MissionController {
     }
 
     @PostMapping("select_mission")
-    public ResponseEntity<SelectMissionResponse> signup(@RequestBody SelectMissionRequest entity) {
+    public ResponseEntity<SelectMissionResponse> selectMission(@RequestBody SelectMissionRequest entity) {
         //TODO: process POST request
 
         SelectMissionResponse response = new SelectMissionResponse();
@@ -28,7 +28,7 @@ public class MissionController {
     }
 
     @PostMapping("complete_mission")
-    public ResponseEntity<CompleteMissionResponse> signup(@RequestBody CompleteMissionRequest entity) {
+    public ResponseEntity<CompleteMissionResponse> completeMission(@RequestBody CompleteMissionRequest entity) {
         //TODO: process POST request
 
         CompleteMissionResponse response = new CompleteMissionResponse();

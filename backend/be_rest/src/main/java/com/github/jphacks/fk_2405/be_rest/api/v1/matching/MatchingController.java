@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1/matchings")
 public class MatchingController {
     @PostMapping("complete_matching")
-    public ResponseEntity<CompleteMatchingResponse> signup(@RequestBody CompleteMatchingRequest entity) {
+    public ResponseEntity<CompleteMatchingResponse> completeMatching(@RequestBody CompleteMatchingRequest entity) {
         //TODO: process POST request
 
         CompleteMatchingResponse response = new CompleteMatchingResponse();

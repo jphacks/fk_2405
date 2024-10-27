@@ -20,7 +20,7 @@ public class ProfileController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<GetProfileResponse> getPlofile (
         @RequestParam(value = "profile_id", required = false) long profile_id
     ) {

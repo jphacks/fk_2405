@@ -7,7 +7,7 @@ import { Content } from "./components/content";
 import { Input } from "./components/input";
 
 export default function Room() {
-  const [timeLeft, setTimeLeft] = useState(3 * 60);
+  const [timeLeft, setTimeLeft] = useState(10);
   const searchParams = useSearchParams();
   const username = decodeURIComponent(searchParams.get("username") || "");
 

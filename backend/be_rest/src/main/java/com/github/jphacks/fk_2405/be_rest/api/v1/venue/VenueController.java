@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -17,6 +18,14 @@ public class VenueController {
         //TODO: process POST request
 
         CreateVenueResponse response = new CreateVenueResponse();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("edit_venue")
+    public ResponseEntity<EditVenueResponse> editVenue(@RequestBody EditVenueRequest entity) {
+        // 処理実行
+
+        EditVenueResponse response = new EditVenueResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

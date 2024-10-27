@@ -4,7 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.github.jphacks.fk_2405.be_rest.api.v1.auth.LogoutResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,5 +37,16 @@ public class MissionController {
 
         CompleteMissionResponse response = new CompleteMissionResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<GetMissionResponse> getMission (
+        @RequestParam(value = "available", required = false) Boolean available,
+        @RequestParam(value = "venue_id", required = false) Long venue_id
+    ) {
+        GetMissionResponse response = new GetMissionResponse();
+        response.setAvailable(available);
+        response.setVenueId(venue_id);
+        return new ResponseEntity<>(response, HttpStatus.OK); // レスポンスオブジェクトとHTTPステータスを返す
     }
 }

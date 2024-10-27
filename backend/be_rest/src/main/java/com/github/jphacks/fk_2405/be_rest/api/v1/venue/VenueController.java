@@ -2,8 +2,10 @@ package com.github.jphacks.fk_2405.be_rest.api.v1.venue;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,5 +29,14 @@ public class VenueController {
 
         EditVenueResponse response = new EditVenueResponse();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete_venue")
+    public ResponseEntity<DeleteVenueResponse> deleteVenue (
+        @RequestParam(value = "venue_id", required = false) long venue_id
+    ) {
+        DeleteVenueResponse response = new DeleteVenueResponse();
+        response.setVenueId(venue_id);
+        return new ResponseEntity<>(response, HttpStatus.OK); // レスポンスオブジェクトとHTTPステータスを返す
     }
 }

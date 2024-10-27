@@ -3,8 +3,7 @@
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2024/07/JPHACKS2024_ogp.jpg)](https://www.youtube.com/watch?v=DZXUkEj-CSI)
 
 # DEMO動画
-[!['fk_2305のデモ動画です。']('![image](https://github.com/user-attachments/assets/fdd31b9b-01a7-41ac-a0ed-b86b6ea1eb0e)
-')]('(https://www.youtube.com/watch?v=0m4BI1zYAKk)')
+[![fk_2305のデモ動画](https://github.com/user-attachments/assets/fdd31b9b-01a7-41ac-a0ed-b86b6ea1eb0e)](https://www.youtube.com/watch?v=0m4BI1zYAKk)
 
 
 

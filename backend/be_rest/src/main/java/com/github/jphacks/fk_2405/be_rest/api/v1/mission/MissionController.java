@@ -41,8 +41,8 @@ public class MissionController {
 
     @GetMapping("")
     public ResponseEntity<GetMissionResponse> getMission (
-        @RequestParam(value = "available", required = false) Boolean available,
-        @RequestParam(value = "venue_id", required = false) Long venue_id
+        @RequestParam(value = "available", required = false) boolean available,
+        @RequestParam(value = "venue_id", required = false) long venue_id
     ) {
         GetMissionResponse response = new GetMissionResponse();
         response.setAvailable(available);

@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Title } from "@/components/ui/title";
 import { Content } from "./components/content";
 import { Input } from "./components/input";
 
 export default function Room() {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(3 * 60);
+  const searchParams = useSearchParams();
+  const username = decodeURIComponent(searchParams.get("username") || "");
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -33,8 +36,7 @@ export default function Room() {
       </div>
       {timeLeft == 0 && <Input timeLeft={timeLeft} />}
       <div className="text-center font-bold mt-5">
-        <p className="text-lg">No.XX</p>
-        <h1 className="text-3xl mt-1">北原將雄</h1>
+        <h1 className="text-3xl mt-1 mb-4">{username || "東迎けんたろう"}</h1>
       </div>
       {timeLeft > 0 && (
         <div className="w-[90vw] mx-[5vw] my-6 py-5 text-center text-white font-bold bg-custom_blue rounded-lg shadow-xl">
@@ -44,9 +46,8 @@ export default function Room() {
       )}
       <Title title={"お相手の情報"} />
       <div className="w-[90vw] mx-[5vw] min-h-[40vh] mb-[40vh] bg-white rounded-lg">
-        <Content title={"出身地"} text={"福岡県　北九州市"} />
-        <Content title={"出身地"} text={"福岡県　北九州市"} />
-        <Content title={"出身地"} text={"福岡県　北九州市"} />
+        <Content title={"出身地"} text={"沖縄県"} />
+        <Content title={"趣味"} text={"野球"} />
       </div>
     </div>
   );

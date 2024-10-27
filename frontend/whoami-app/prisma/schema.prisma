@@ -63,7 +63,7 @@ model Profile {
 model Item {
   id                 BigInt               @id @default(autoincrement())
   profile_id         BigInt 
-  mission_id         BigInt               
+  mission_id         BigInt?               
   title              String
   content            String
   point              Int

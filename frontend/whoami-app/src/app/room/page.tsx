@@ -5,11 +5,14 @@ import { useSearchParams } from "next/navigation";
 import { Title } from "@/components/ui/title";
 import { Content } from "./components/content";
 import { Input } from "./components/input";
+import { supabase } from "@/lib/supabase"; // Supabaseクライアントをインポート
 
 export default function Room() {
-  const [timeLeft, setTimeLeft] = useState(3 * 60);
+  const [timeLeft, setTimeLeft] = useState(10);
+  const [userItems, setUserItems] = useState({}); // ユーザーのアイテムを管理するステート（オブジェクト）
   const searchParams = useSearchParams();
   const username = decodeURIComponent(searchParams.get("username") || "");
+  const id = 2345; // ここに取得したいユーザーのIDを設定
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -20,6 +23,25 @@ export default function Room() {
 
     return () => clearInterval(timerId);
   }, [timeLeft]);
+
+  // ユーザーのアイテムを取得する関数
+  const fetchUserItems = async (userId) => {
+    const { data, error } = await supabase
+      .from("User") // Userテーブルからデータを取得
+      .select("items") // itemsを取得
+      .eq("id", userId); // idが一致するものを取得
+
+    if (error) {
+      console.error("Error fetching user items:", error);
+    } else if (data && data.length > 0) {
+      setUserItems(data[0].items); // 取得したitemsをステートに設定
+    }
+  };
+
+  // コンポーネントがマウントされたときにアイテムを取得
+  useEffect(() => {
+    fetchUserItems(id);
+  }, [id]);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -34,7 +56,7 @@ export default function Room() {
       <div className="">
         <Input timeLeft={timeLeft} />
       </div>
-      {timeLeft == 0 && <Input timeLeft={timeLeft} />}
+      {timeLeft === 0 && <Input timeLeft={timeLeft} />}
       <div className="text-center font-bold mt-5">
         <h1 className="text-3xl mt-1 mb-4">{username || "東迎けんたろう"}</h1>
       </div>
@@ -46,8 +68,21 @@ export default function Room() {
       )}
       <Title title={"お相手の情報"} />
       <div className="w-[90vw] mx-[5vw] min-h-[40vh] mb-[40vh] bg-white rounded-lg">
-        <Content title={"出身地"} text={"沖縄県"} />
-        <Content title={"趣味"} text={"野球"} />
+        {/* ユーザーのアイテムを表示 */}
+        <div className="p-4">
+          <h2 className="text-xl font-bold">ユーザーの情報:</h2>
+          <ul>
+            {Object.entries(userItems).length > 0 ? (
+              Object.entries(userItems).map(([key, value]) => (
+                <li key={key} className="py-1">
+                  <strong>{key}:</strong> {value}
+                </li>
+              ))
+            ) : (
+              <li>アイテムが見つかりませんでした。</li>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );

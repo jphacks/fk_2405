@@ -5,14 +5,12 @@ import Image from "next/image";
 
 import { Title } from "@/components/ui/title";
 import { AddModal } from "./components/add-modal";
-import { QrCodeGenerator } from "./components/qrcode";
 
 import Plus from "../../../public/plus-solid.svg";
 import Qrcode from "../../../public/qrcode-solid.svg";
 
 export default function Mypage() {
   const [isOpen, setIsOpen] = useState(false);
-  const [qrSelect, setQrSelect] = useState("");
 
   return (
     <div className="mt-20 pb-[20vh]">

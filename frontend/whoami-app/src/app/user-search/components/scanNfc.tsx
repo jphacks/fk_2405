@@ -11,6 +11,7 @@ export const ScanNfc = () => {
 
   const [status, setStatus] = useState("");
   const [scannedContent, setScannedContent] = useState("");
+  const [userId, setUserId] = useState(0); // 初期値を0に設定（数値型）
 
   const readNFC = async () => {
     try {
@@ -25,7 +26,11 @@ export const ScanNfc = () => {
           const content = records
             .map((record) => decoder.decode(record.data))
             .join("\n");
-          setScannedContent(content);
+
+          // スキャンした内容を分割してuserIdとuserNameを設定
+          const [id, name] = content.split("_");
+          setUserId(parseInt(id, 10)); // idを数値に変換して設定
+          setScannedContent(name); // userNameに設定
           setStatus("NFCタグの読み取りに成功しました！");
         };
 
@@ -43,10 +48,11 @@ export const ScanNfc = () => {
 
   return (
     <div>
-      {scannedContent && status == "NFCタグの読み取りに成功しました！" && (
+      {scannedContent && status === "NFCタグの読み取りに成功しました！" && (
         <Modal
           title={title}
           userName={scannedContent}
+          userId={userId}
           setScannedContent={setScannedContent}
         />
       )}

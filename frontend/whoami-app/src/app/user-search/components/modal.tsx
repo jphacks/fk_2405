@@ -5,10 +5,16 @@ import Link from "next/link";
 type Props = {
   title: string;
   userName: string;
+  userId: string; // userIdをPropsに追加
   setScannedContent: (content: string) => void;
 };
 
-export const Modal = ({ title, userName, setScannedContent }: Props) => {
+export const Modal = ({
+  title,
+  userName,
+  userId,
+  setScannedContent,
+}: Props) => {
   return (
     <div>
       <div
@@ -25,8 +31,8 @@ export const Modal = ({ title, userName, setScannedContent }: Props) => {
           <Link
             href={`/room?title=${encodeURIComponent(
               title
-            )}?username=${encodeURIComponent(userName)}`} // クエリパラメータとして title を追加
-            className="col-span-3 bg-custom_blue rounded-lg flex justify-center items-center text-white font-bold text-"
+            )}&id=${encodeURIComponent(userId)}`} // 修正
+            className="col-span-3 bg-custom_blue rounded-lg flex justify-center items-center text-white font-bold"
           >
             会話を開始する！
           </Link>

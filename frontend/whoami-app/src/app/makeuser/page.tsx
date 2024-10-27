@@ -1,15 +1,17 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Title } from "@/components/ui/title";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase"; // Supabase クライアントをインポート
 
 export default function Home() {
   const [venues, setVenues] = useState([]);
 
+  // データを取得する関数
   const fetchVenues = async () => {
-    const { data, error } = await supabase.from("Venue").select("*");
+    const { data, error } = await supabase
+      .from("Venue") // 'Venue' テーブルからデータを取得
+      .select("*");
 
     if (error) {
       console.error("Error fetching venues:", error);
@@ -19,7 +21,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchVenues();
+    fetchVenues(); // コンポーネントがマウントされたときにデータを取得
   }, []);
 
   return (

@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String               @id @default(cuid())
+  username               String               @unique
+  full_name             String
+  email              String                  @unique
+  is_admin              Boolean              @default(false)
+  password_hash      String?                @unique
+  salt               String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  venue Venue[]
+  profile Profile[]
+  joining   Joining[]
+}
+
+model Venue {
+  id                 BigInt               @id @default(autoincrement())
+  user_id            String               @unique
+  place                 String             
+  start_time          DateTime              
+  end_time              DateTime            
+  talk_time_limit      Int              
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  user          User                 @relation(fields: [user_id], references: [id])
+  mission       Mission[]
+  matching      Matching[]
+  joining       Joining[]
+  request       Request[]
+  ranking       Ranking[]
+}
+
+model Joining {
+    id          BigInt      @id
+    venue_id    BigInt
+    user_id     String
+    user          User                 @relation(fields: [user_id], references: [id])
+    venue          Venue                 @relation(fields: [venue_id], references: [id])
+}
+
+model Profile {
+  id                 BigInt               @id @default(autoincrement())
+  user_id            String               @unique
+  title              String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  user          User                 @relation(fields: [user_id], references: [id])
+  item          Item[]
+}
+
+model Item {
+  id                 BigInt               @id @default(autoincrement())
+  profile_id         BigInt 
+  mission_id         BigInt               
+  title              String
+  content            String
+  point              Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  profile          Profile                 @relation(fields: [profile_id], references: [id])
+}
+
+model Mission {
+  id                 BigInt               @id @default(autoincrement())
+  venue_id         BigInt 
+  capacity         Int
+  count             Int               
+  title              String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  venue          Venue                 @relation(fields: [venue_id], references: [id])
+}
+
+model Matching {
+  id                 BigInt               @id @default(autoincrement())
+  venue_id         BigInt 
+  user_id         String
+  partner_id        String               
+  title              String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  venue          Venue                 @relation(fields: [venue_id], references: [id])
+}
+
+model Request {
+  id                 BigInt               @id @default(autoincrement())
+  venue_id         BigInt 
+  from_user_id         String
+  to_user_id        String               
+  comment   String
+  is_completed  Boolean
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  venue          Venue                 @relation(fields: [venue_id], references: [id])
+
+}
+
+model Ranking {
+  id                 BigInt               @id @default(autoincrement())
+  venue_id         BigInt 
+  rank      Int
+  total_points  Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  venue          Venue                 @relation(fields: [venue_id], references: [id])
+
+}

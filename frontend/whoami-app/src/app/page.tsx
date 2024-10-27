@@ -8,10 +8,10 @@ const sampleEvent = [
     password: "securepass123",
     start_time: "2024-10-26T09:00:00",
     end_time: "2024-10-26T17:00:00",
-    talk_time_limit: 15,
+    talk_time_limit: 10,
     created_at: "2024-10-25T00:00:00",
     updated_at: "2024-10-25T00:00:00",
-    title: "",
+    title: "AI and Innovation Conference",
   },
   {
     user_id: "01E456789ABCDEF123456788",
@@ -22,6 +22,7 @@ const sampleEvent = [
     talk_time_limit: 20,
     created_at: "2024-10-26T00:00:00",
     updated_at: "2024-10-26T00:00:00",
+    title: "Tech Startups Meetup",
   },
   {
     user_id: "01E456789ABCDEF123456787",
@@ -32,6 +33,7 @@ const sampleEvent = [
     talk_time_limit: 10,
     created_at: "2024-10-26T00:00:00",
     updated_at: "2024-10-26T00:00:00",
+    title: "Healthcare Symposium",
   },
   {
     user_id: "01E456789ABCDEF123456786",
@@ -42,6 +44,7 @@ const sampleEvent = [
     talk_time_limit: 25,
     created_at: "2024-10-27T00:00:00",
     updated_at: "2024-10-27T00:00:00",
+    title: "Green Energy Forum",
   },
   {
     user_id: "01E456789ABCDEF123456785",
@@ -52,6 +55,7 @@ const sampleEvent = [
     talk_time_limit: 30,
     created_at: "2024-10-28T00:00:00",
     updated_at: "2024-10-28T00:00:00",
+    title: "Blockchain Development Workshop",
   },
 ];
 
@@ -65,8 +69,14 @@ export default function Home() {
           key={index}
           className="w-[90vw] mx-[5vw] py-10 bg-custom_yellow px-2 mb-5 rounded-md shadow-lg text-center justify-center items-center flex flex-col"
         >
-          <Link href={"/user-search/1"} className="w-[90vw] mx-[5vw]">
-            <h1 className="font-bold text-2xl">JPHACK in FUKUOKA</h1>
+          <Link
+            href={{
+              pathname: "/user-search",
+              query: { title: event.title },
+            }}
+            className="w-[90vw] mx-[5vw]"
+          >
+            <h1 className="font-bold text-2xl">{event.title}</h1>
             <p className="font-bold text-sm">{event.place}</p>
             <p className="font-bold text-sm">
               開始時間: {new Date(event.start_time).toLocaleString()}

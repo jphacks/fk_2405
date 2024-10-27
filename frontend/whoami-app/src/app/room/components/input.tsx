@@ -6,7 +6,7 @@ type Props = {
 
 export const Input = ({ timeLeft }: Props) => {
   const handleButtonClick = () => {
-    redirect("/user-search/1");
+    redirect("/user-search/");
   };
 
   return (

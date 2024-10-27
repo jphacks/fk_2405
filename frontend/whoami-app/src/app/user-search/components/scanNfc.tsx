@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { Modal } from "./modal";
 
 export const ScanNfc = () => {
+  const searchParams = useSearchParams();
+  const title = searchParams.get("title");
+
   const [status, setStatus] = useState("");
   const [scannedContent, setScannedContent] = useState("");
 
@@ -41,6 +45,7 @@ export const ScanNfc = () => {
     <div>
       {scannedContent && status == "NFCタグの読み取りに成功しました！" && (
         <Modal
+          title={title}
           userName={scannedContent}
           setScannedContent={setScannedContent}
         />

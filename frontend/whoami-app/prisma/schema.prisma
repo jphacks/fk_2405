@@ -88,7 +88,7 @@ model Matching {
   venue_id         BigInt 
   user_id         String
   partner_id        String               
-  title              String
+  item_id              BigInt
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   venue          Venue                 @relation(fields: [venue_id], references: [id])

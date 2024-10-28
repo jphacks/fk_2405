@@ -39,7 +39,7 @@ export default function Mypage() {
       <div className="w-[90vw] mx-[5vw]">
         <div className="flex flex-col justify-center items-center font-bold">
           <p className="border-b-2 text-lg">ユーザー名</p>
-          <h1 className="mt-4 text-3xl">北原將雄</h1>
+          <h1 className="mt-4 text-3xl">北原まさお</h1>
         </div>
 
         <div className="mt-10 flex flex-col justify-center items-center font-bold">

@@ -1,0 +1,59 @@
+syntax = "proto3";
+package jphacks.fk_2405.backend.be_grpc;
+
+option go_package="github.com/jphacks/fk_2405/backend/be_grpc/protos/gen/go/v1";
+
+import "google/protobuf/timestamp.proto";
+
+// protoc --go_out=./proto/gen/go/v1 --go_opt=paths=source_relative --go-grpc_out=./proto/gen/go/v1 --go-grpc_opt=paths=source_relative -I=./proto proto/*.proto
+service MissionService {
+  rpc CreateMission(CreateMissionRequest) returns (Mission) {}
+  rpc GetMissions(GetMissionsRequest) returns (MissionsList) {}
+  rpc SelectMission(SelectMissionsRequest) returns (SelectMissionsResponse) {}
+  rpc CompleteMission(CompleteMissionRequest) returns (CompleteMissionResponse) {}
+}
+
+message CreateMissionRequest {
+  int32 capacity = 1;
+  string title = 2;
+  int64 venue_id = 3;
+}
+
+message Mission {
+  int64 mission_id = 1;
+  repeated int64 item_ids = 2;
+  int64 venue_id = 3;
+  int32 capacity = 4;
+  int32 count = 5;
+  string title = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+message GetMissionsRequest {
+  int64 venue_id = 1;
+  optional bool available = 2;
+}
+
+message MissionsList {
+  repeated Mission missions = 1;
+}
+
+message SelectMissionsRequest {
+  string user_id = 1;
+  int64 mission_id = 2;
+}
+
+message SelectMissionsResponse {
+  bool approval = 1;
+}
+
+message CompleteMissionRequest {
+  string user_id = 1;
+  int64 mission_id = 2;
+  bool completed = 3;
+}
+
+message CompleteMissionResponse {
+  string message = 1;
+}

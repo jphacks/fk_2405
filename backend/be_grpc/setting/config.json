@@ -1,0 +1,16 @@
+{
+    "DeploymentType":"develop","//deploy_comment":"local, develop, production",
+    "Port":"8090",
+    "PostgreSQL":{
+        "Local":{
+            "Host": "localhost",
+            "Port": 5432,
+            "Ext":  "user=postgres password=pass dbname=grpc_db sslmode=disable TimeZone=Asia/Tokyo"
+        },
+        "Develop":{
+            "Host": "localhost",
+            "Port": 5432,
+            "Ext":  "user=postgres password=pass dbname=grpc_db sslmode=disable TimeZone=Asia/Tokyo"
+        }
+    }
+}

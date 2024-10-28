@@ -1,0 +1,6 @@
+proto/gen
+go.sum
+
+.vscode
+
+.env

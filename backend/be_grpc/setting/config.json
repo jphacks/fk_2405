@@ -1,5 +1,5 @@
 {
-    "DeploymentType":"develop","//deploy_comment":"local, develop, production",
+    "DeploymentType":"local","//deploy_comment":"local, develop, production",
     "Port":"8090",
     "PostgreSQL":{
         "Local":{

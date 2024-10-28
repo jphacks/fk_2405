@@ -9,9 +9,13 @@ import (
 
 var ConfigData *ConfigType
 
-// ReadConfig setting/config.jsonを読む
-func ReadConfig() *ConfigType {
-	log.Println("ReadConfig")
+func InitConfig() {
+	ReadSetting()
+	ReadEnv()
+}
+
+func ReadSetting() *ConfigType {
+	log.Println("ReadSetting")
 
 	path := "setting"
 	pkg.ReadJson(path, &ConfigData)
@@ -20,7 +24,7 @@ func ReadConfig() *ConfigType {
 }
 
 func ReadEnv() {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env")
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}

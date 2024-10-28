@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 
+	missionDomain "github.com/jphacks/fk_2405/backend/be_grpc/domain/mission"
 	"github.com/jphacks/fk_2405/backend/be_grpc/helper"
 	v1 "github.com/jphacks/fk_2405/backend/be_grpc/proto/gen/go/v1"
 	missionUsecase "github.com/jphacks/fk_2405/backend/be_grpc/usecase/mission"
@@ -13,17 +14,22 @@ import (
 )
 
 type MissionUseCase struct {
-	createMission missionUsecase.CreateMissionUseCase
-	getMissions   missionUsecase.GetMissionsUseCase
+	createMission *missionUsecase.CreateMissionUseCase
+	getMissions   *missionUsecase.GetMissionsUseCase
 }
 
 type MissionService struct {
 	v1.UnimplementedMissionServiceServer
-	uc MissionUseCase
+	uc *MissionUseCase
 }
 
-func NewMissionService() *MissionService {
-	return &MissionService{}
+func NewMissionService(missionRepository missionDomain.MissionRepository) *MissionService {
+	return &MissionService{
+		uc: &MissionUseCase{
+			createMission: &missionUsecase.CreateMissionUseCase{MissionRepo: missionRepository},
+			getMissions:   &missionUsecase.GetMissionsUseCase{MissionRepo: missionRepository},
+		},
+	}
 }
 
 func (ms *MissionService) CreateMission(ctx context.Context, req *v1.CreateMissionRequest) (*v1.Mission, error) {

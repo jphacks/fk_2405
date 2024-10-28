@@ -14,7 +14,7 @@ import (
 type missionRepository struct {
 }
 
-func NewProductRepository() mission.MissionRepository {
+func NewMissionRepository() mission.MissionRepository {
 	return &missionRepository{}
 }
 

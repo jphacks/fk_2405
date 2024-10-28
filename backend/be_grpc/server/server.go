@@ -9,6 +9,7 @@ import (
 
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/jphacks/fk_2405/backend/be_grpc/handler"
+	"github.com/jphacks/fk_2405/backend/be_grpc/infrastructure/repository"
 	v1 "github.com/jphacks/fk_2405/backend/be_grpc/proto/gen/go/v1"
 
 	"google.golang.org/grpc"
@@ -44,13 +45,11 @@ func StartgRPCServer() error {
 	)
 
 	// serviceが追加されるたびに同じ形で追加していく
-	v1.RegisterMissionServiceServer(server, handler.NewMissionService())
-
-	go server.Serve(listenPort)
+	v1.RegisterMissionServiceServer(server, handler.NewMissionService(repository.NewMissionRepository()))
 
 	reflection.Register(server)
 
-	return nil
+	return server.Serve(listenPort)
 }
 
 func recoveryFunc(p interface{}) error {

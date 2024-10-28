@@ -25,4 +25,8 @@ json () {
     fi
 }
 
+proto () {
+    protoc --go_out=./proto/gen/go/v1 --go_opt=paths=source_relative --go-grpc_out=./proto/gen/go/v1 --go-grpc_opt=paths=source_relative -I=./proto ./proto/*.proto
+}
+
 $*

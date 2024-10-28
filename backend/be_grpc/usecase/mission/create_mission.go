@@ -11,7 +11,7 @@ import (
 )
 
 type CreateMissionUseCase struct {
-	missionRepo missionDomain.MissionRepository
+	MissionRepo missionDomain.MissionRepository
 }
 
 type CreateMissionInputDto struct {
@@ -36,7 +36,7 @@ func (uc *CreateMissionUseCase) Run(userId string, input *CreateMissionInputDto)
 		return nil, status.Error(codes.PermissionDenied, "user is not admin")
 	}
 
-	mission, err := uc.missionRepo.Save(input.VenueID, input.Capacity, input.Title)
+	mission, err := uc.MissionRepo.Save(input.VenueID, input.Capacity, input.Title)
 	if err != nil {
 		return nil, err
 	}

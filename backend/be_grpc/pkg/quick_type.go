@@ -13,9 +13,9 @@ type JSON struct{}
 
 func ReadJson(path string, data interface{}) *interface{} {
 	currentDir, _ := os.Getwd()
-	tsDir := strings.Split(currentDir, "TelemetryLogServer")
+	tsDir := strings.Split(currentDir, "be_grpc")
 
-	jsonDir := filepath.Join(tsDir[0], "TelemetryLogServer/", path)
+	jsonDir := filepath.Join(tsDir[0], "be_grpc/", path)
 	files, err := os.ReadDir(jsonDir)
 	if err != nil {
 		fmt.Println("Error reading directory:", err)

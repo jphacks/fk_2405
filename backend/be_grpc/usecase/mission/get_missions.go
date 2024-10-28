@@ -7,7 +7,7 @@ import (
 )
 
 type GetMissionsUseCase struct {
-	missionRepo missionDomain.MissionRepository
+	MissionRepo missionDomain.MissionRepository
 }
 
 type GetMissionsInputDto struct {
@@ -29,7 +29,7 @@ type GetMissionsOutputDto struct {
 }
 
 func (uc *GetMissionsUseCase) Run(input *GetMissionsInputDto) (*GetMissionsOutputDto, error) {
-	missions, err := uc.missionRepo.GetMany(input.VenueID, input.Available)
+	missions, err := uc.MissionRepo.GetMany(input.VenueID, input.Available)
 	if err != nil {
 		return nil, err
 	}

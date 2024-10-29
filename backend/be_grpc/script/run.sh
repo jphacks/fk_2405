@@ -1,18 +1,18 @@
 #!/bin/sh
 
-APP_NAME=${APP_NAME:-"trjx-ts"}
+APP_NAME=${APP_NAME:-"be_grpc"}
 ENV=${ENV:-local}
 
 start () {
     export ENV=$ENV
     export APP_NAME=$APP_NAME
-    go build -v -o ./bin/$APP_NAME ./main.go && ./bin/$APP_NAME
+    go build -v -o ./bin/$APP_NAME ./cmd/main.go && ./bin/$APP_NAME
 }
 
 build_linux () {
     export ENV=$ENV
     export APP_NAME=$APP_NAME
-    GOOS=linux GOARCH=amd64 go build -v -o ./bin/$APP_NAME ./main.go
+    GOOS=linux GOARCH=amd64 go build -v -o ./bin/$APP_NAME ./cmd/main.go
 }
 
 
